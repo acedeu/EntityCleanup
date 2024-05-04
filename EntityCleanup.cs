@@ -1,19 +1,19 @@
-﻿using Oxide.Core;
+using Oxide.Core;
 using Oxide.Core.Plugins;
 
 namespace Oxide.Plugins
 {
-    [Info("EntityCleanup", "acedrust", "1.0.6")]
+    [Info("EntityCleanup", "acedrust", "1.0.8")]
     class EntityCleanup : RustPlugin
     {
         private Timer cleanupTimer;
 
         private void OnServerInitialized()
         {
-            cleanupTimer = timer.Repeat(60f, 0, () =>  // TIMER LOGIC 60 SECONDS = EVERY CLEANUP = 45 SECONDS ALERT BEFORE HAND
+            cleanupTimer = timer.Repeat(60f, 0, () =>  // EVERY 60 SECONDS = CLEANUP
             {
                 BroadcastCleanupWarning();
-                timer.Once(45f, ClearDroppedItems);
+                timer.Once(45f, ClearDroppedItems); // EVERY 30 SECONDS = CLEANUP
             });
         }
 
